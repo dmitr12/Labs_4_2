@@ -1,0 +1,6 @@
+<ul class="list-group list_students">
+  <li class="list-group-item student-item" [class.selectedItem]="company.id == selectedId" *ngFor="let company of dataCompaniesService.data"
+      id="{{company.id}}" (click)="clickCompany($event)">
+    {{company.name}}
+  </li>
+</ul>

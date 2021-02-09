@@ -1,0 +1,14 @@
+
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a id="0" class="nav-link item" style="cursor: default" [class.selected-nav]="selectedId==0" (click)="clickStudents()">Студенты</a>
+  </li>
+  <li class="nav-item">
+    <a id="1" class="nav-link item" style="cursor: default" [class.selected-nav]="selectedId==1" (click)="clickCompanies()">Компании</a>
+  </li>
+  <li class="nav-item">
+    <a id="2" class="nav-link item" style="cursor: default" [class.selected-nav]="selectedId==2" (click)="clickEvents()">События</a>
+  </li>
+</ul>
+<ng-template #container></ng-template>
+

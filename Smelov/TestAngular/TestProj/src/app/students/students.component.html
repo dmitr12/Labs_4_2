@@ -1,0 +1,20 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div id="btn-panel" [hidden]="isHideBtnPanel" class="row btn-panel justify-content-center">
+        <button style="background-color: #980af7" class="btn btn-small btnpanel waves-effect waves-light" (click)="btnPanelAdd()">Добавить</button>
+        <button style="background-color: #980af7" *ngIf="selectedStudent" class="btn btn-small btnpanel waves-effect waves-light" (click)="btnPanelEdit()">Изменить</button>
+        <button style="background-color: #980af7" *ngIf="selectedStudent" class="btn btn-small btnpanel waves-effect waves-light" (click)="btnPanelDelete()">Удалить</button>
+        <button style="background-color: #980af7" class="btn btn-small btnpanel waves-effect waves-light" >Позиционировать</button>
+      </div>
+      <ng-template #formComponent></ng-template>
+      <div class="list">
+        <app-studentlist (onState)="onStudentListChanged($event)"></app-studentlist>
+      </div>
+    </div>
+    <div class="col list-events">
+      <app-studentsevent [selectedStudent]="selectedStudent" [selectedStudentEvents]="selectedStudentEvents"></app-studentsevent>
+    </div>
+  </div>
+</div>

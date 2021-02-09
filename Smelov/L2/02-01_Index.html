@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>РДWП-Лабораторная 02</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    const REGIM={
+        S:'Students',
+        C:'Companies',
+        E:'Events',
+        R:'Contacts'
+    };
+
+    class App extends React.Component{
+        state={Regim:REGIM.S};
+        changeRegim=(r)=>{
+            this.state.Regim!=r?this.setState({Regim:r}):null;
+        };
+        render(){
+            console.log('App',this.state.Regim);
+            return(
+                <div>
+                    <p>Компонент App: {this.state.Regim}</p>
+                    <Navigation changeRegim={this.changeRegim} />
+                </div>
+            );
+        };
+    };
+
+    const Navigation=(props)=>{
+        const obc=(e)=>{
+            props.changeRegim(REGIM[e.target.id]);
+            [...document.querySelectorAll(".Navigation .activebutton")].map((e)=>{
+                e.className='passivebutton';
+            });
+            document.getElementById(e.target.id).className='activebutton';
+        }
+        return <nav className="Navigation">
+            <button id="S" onClick={obc} className="activebutton">Студенты</button>
+            <button id="C" onClick={obc} className="passivebutton">Компании</button>
+            <button id="E" onClick={obc} className="passivebutton">События</button>
+            <button id="R" onClick={obc} className="passivebutton">Контакты</button>
+        </nav>
+    }
+
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('root')
+    );
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>РДWП-Лабораторная 01</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <link rel="stylesheet" href="01_css.css">
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+
+    let InName = () => {
+        let onchange = (e) => {
+            console.log(e.currentTarget.value)
+        };
+        return <div>
+            <label>Фамилия, имя, отчество </label>
+            <input type="text" onChange={onchange}/>
+        </div>;
+    };
+
+    class InGender extends React.Component{
+        state={gender:'M'};
+        onchange=(e)=>{
+            if(e.currentTarget.value==this.state.gender){}
+            else{
+                this.setState({gender: e.currentTarget.value}, ()=>{console.log('gender', this.state.gender);})
+            };
+        };
+        render(){
+            return <div>
+                <label>
+                    <input id="M" type="radio" onChange={this.onchange} value="M" checked={this.state.gender=='M'}/>M
+                </label>
+                <label>
+                    <input id="F" type="radio" onChange={this.onchange} value="Ж" checked={this.state.gender=='Ж'}/>Ж
+                </label>
+            </div>
+        };
+    };
+
+    class InLanguages extends React.Component{
+        state={languages:[]};
+        onchange=(e)=>{
+            console.log(e.currentTarget.value);
+            let m=this.state.languages;
+            let k=m.indexOf(e.currentTarget.value);
+            if(k>=0){
+                m.splice(k,1);
+            }
+            else{
+                m.unshift(e.currentTarget.value);
+            }
+            this.setState({languages:m}, ()=>{console.log(this.state.languages);});
+        };
+        render(){
+          let tmp=this.props.data.map((item,index)=>{
+              return <label key={item}>
+                  <input key={item} id={item} onChange={this.onchange} type="checkbox" value={item} />{item}
+              </label>
+            });
+          return tmp;
+        };
+    };
+
+    const InSpeciality=(props)=>{
+        let onSpecChange=(e)=>{
+            console.log(e.currentTarget.value);
+        };
+        let tmp=props.data.map((item,index)=>{
+            return <option key={item} value={item}>{item}</option>
+        });
+        return <div>
+            Специальность <select className="InSpeciality" onChange={onSpecChange} defaultValue={props.data[0]}>{tmp}</select>
+        </div>
+    };
+
+    const InStudent=(props)=>{
+        return <div>
+            <h2>Студент</h2>
+            <InName/>
+            <InGender/>
+            <InLanguages data={props.Languages}/>
+            <InSpeciality data={props.Speciality}/>
+        </div>
+    }
+
+    ReactDOM.render(
+        <InStudent Languages={['EN','FR','DE','SP']} Speciality={['ИСиТ','ПОИТ','ПОИБМС','ДЭВИ']}/>,
+    document.getElementById('root')
+    );
+</script>
+
+</body>
+</html>
+

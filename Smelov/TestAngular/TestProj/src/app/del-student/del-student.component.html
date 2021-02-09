@@ -1,0 +1,14 @@
+<form id="form-del" class="card" style="margin-top:20px" (ngSubmit)="delStudent()">
+  <div class="card-content">
+    <div class="card-title center-align">
+      Удалить
+    </div>
+    <div class="center-align">
+      <p>{{selectedStudent.name}}-{{selectedStudent.spec}}-{{selectedStudent.group}}-{{selectedStudent.syear}}</p>
+    </div>
+    <div class="card-action center-align">
+      <button type="submit" class="btn waves-effect waves-light" style="background-color: #980af7">Удалить</button>
+      <button id="btnCancel" class="btn waves-effect waves-light" style="background-color: #980af7; margin-left: 20px" (click)="cancel()">Отмена</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div id="btn-panel" [hidden]="isHideBtnPanel" class="row btn-panel justify-content-center">
+        <button style="background-color: #980af7" class="btn btn-small btnpanel waves-effect waves-light" (click)="btnPanelAdd()">Добавить</button>
+        <button style="background-color: #980af7" *ngIf="selectedCompany" class="btn btn-small btnpanel waves-effect waves-light" (click)="btnPanelEdit()">Изменить</button>
+        <button style="background-color: #980af7" *ngIf="selectedCompany" class="btn btn-small btnpanel waves-effect waves-light" (click)="btnPanelDelete()">Удалить</button>
+        <button style="background-color: #980af7" class="btn btn-small btnpanel waves-effect waves-light" >Позиционировать</button>
+      </div>
+      <ng-template #formComponent></ng-template>
+      <div class="list">
+        <app-companieslist (onState)="onCompanyListChanged($event)"></app-companieslist>
+      </div>
+    </div>
+    <div class="col list-events">
+      <app-companiesevent [selectedCompany]="selectedCompany" [selectedCompanyEvents]="selectedCompanyEvents"></app-companiesevent>
+    </div>
+  </div>
+</div>

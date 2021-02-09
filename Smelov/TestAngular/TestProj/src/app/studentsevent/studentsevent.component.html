@@ -1,0 +1,9 @@
+<div *ngIf="selectedStudent!=null">
+  <p>{{selectedStudent.name}}-{{selectedStudent.spec}}-{{selectedStudent.group}}-{{selectedStudent.syear}}</p>
+  <ul>
+    <li *ngFor="let e of selectedStudentEvents">
+      {{e.id}}) {{e.date}},{{e.company?.name}},{{e.text}}
+    </li>
+  </ul>
+</div>
+

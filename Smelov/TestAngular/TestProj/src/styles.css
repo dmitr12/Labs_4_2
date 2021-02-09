@@ -1,0 +1,55 @@
+.btnpanel{
+  margin: 2px;
+}
+
+.panel{
+  margin: 10px;
+  border: 1px solid black;
+}
+
+.input-field input:focus + label {
+  color: #980af7 !important;
+}
+
+.input-field input:focus {
+  border-bottom: 1px solid #980af7 !important;
+  box-shadow: 0 1px 0 0 #980af7 !important
+}
+
+.list{
+  box-shadow: 0 0 10px rgba(0,0,0,0.3)
+}
+
+.list-events{
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  margin:20px 20px 20px 20px
+}
+
+.btn-panel{
+  margin-top: 20px
+}
+
+.list_students{
+  max-height: 400px;
+  overflow:auto;
+  margin: 20px 0;
+}
+
+.list_students::-webkit-scrollbar{
+  width: 0;
+}
+
+.student-item{
+  transition: all .3s;
+  border: none;
+}
+
+.student-item:hover, .selectedItem{
+  background-color: #980af7;
+  color: white;
+  cursor: default;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

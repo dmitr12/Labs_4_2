@@ -1,0 +1,9 @@
+.item{
+  transition: all .3s;
+  color: #980af7;
+}
+
+.item:hover, .selected-nav{
+  color: white;
+  background-color: #980af7;
+}

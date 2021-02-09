@@ -1,0 +1,17 @@
+<form id="form-add" class="card frm" style="margin-top: 20px;" [formGroup]="formUpd" (ngSubmit)="updCompany()">
+  <div class="card-content">
+    <span class="card-title center-align">Изменить компанию</span>
+    <div class="input-field">
+      <label class="active" for="name">Название компании</label>
+      <input type="text" required id="name" formControlName="name">
+      <span class="helper-text red-text" *ngIf="formUpd.get('name')?.invalid && formUpd.get('name')?.dirty">
+        <span *ngIf="formUpd.get('name')?.errors.required">Поле необходимо заполнить</span>
+        <span *ngIf="formUpd.get('name')?.errors.custom">Компания с таким названием уже есть</span>
+      </span>
+    </div>
+  </div>
+  <div class="card-action center-align">
+    <button type="submit" class="btn waves-effect waves-light" style="background-color: #980af7" [disabled]="formUpd.invalid">Изменить</button>
+    <button id="btnCancel" class="btn waves-effect waves-light" style="background-color: #980af7; margin-left: 20px" (click)="cancel()">Отмена</button>
+  </div>
+</form>

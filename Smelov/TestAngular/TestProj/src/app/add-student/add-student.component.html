@@ -1,0 +1,45 @@
+<form id="form-add" class="card frm" style="margin-top: 20px;" [formGroup]="formAdd" (ngSubmit)="addStudent()">
+  <div class="card-content">
+    <span class="card-title center-align">Добавить студента</span>
+    <div class="input-field">
+      <label class="active" for="name">Имя студента</label>
+      <input type="text" required id="name" formControlName="name">
+      <span class="helper-text red-text" *ngIf="formAdd.get('name')?.invalid && formAdd.get('name')?.dirty">
+        <span *ngIf="formAdd.get('name')?.errors?.required">Поле необходимо заполнить</span>
+      </span>
+    </div>
+    <mat-form-field appearance="fill" style="width: 100%">
+      <label>Специальность</label>
+      <mat-select id="spec" formControlName="spec">
+        <mat-option *ngFor="let spec of specialities" [value]="spec.name">
+          {{spec.name}}
+        </mat-option>
+      </mat-select>
+      <span class="helper-text red-text" *ngIf="formAdd.get('spec')?.invalid && formAdd.get('spec')?.dirty">
+        <span *ngIf="formAdd.get('spec')?.errors?.required">Поле необходимо заполнить</span>
+      </span>
+    </mat-form-field>
+    <div class="input-field">
+      <label for="group" class="active">Группа</label>
+      <input type="number" required id="group" formControlName="group">
+      <span class="helper-text red-text" *ngIf="formAdd?.get('group')?.invalid && formAdd?.get('group')?.dirty">
+          <span *ngIf="formAdd?.get('group')?.errors?.required">поле необходимо заполнить</span>
+          <span *ngIf="formAdd?.get('group')?.errors?.max">Максимальное значение 20</span>
+          <span *ngIf="formAdd?.get('group')?.errors?.min">Минимальное значение 1</span>
+      </span>
+    </div>
+    <div class="input-field">
+      <label class="active" for="syear">Год поступления</label>
+      <input type="number" required id="syear" formControlName="syear">
+      <span class="helper-text red-text" *ngIf="formAdd?.get('syear')?.invalid && formAdd?.get('syear')?.dirty">
+          <span *ngIf="formAdd?.get('syear')?.errors?.required">поле необходимо заполнить</span>
+          <span *ngIf="formAdd?.get('syear')?.errors?.max">Максимальное значение {{this.date.getFullYear()}}</span>
+          <span *ngIf="formAdd?.get('syear')?.errors?.min">Минимальное значение {{this.date.getFullYear() - 10}}</span>
+      </span>
+    </div>
+  </div>
+  <div class="card-action center-align">
+    <button type="submit" class="btn waves-effect waves-light" style="background-color: #980af7" [disabled]="formAdd.invalid">Добавить</button>
+    <button id="btnCancel" class="btn waves-effect waves-light" style="background-color: #980af7; margin-left: 20px" (click)="cancel()">Отмена</button>
+  </div>
+</form>

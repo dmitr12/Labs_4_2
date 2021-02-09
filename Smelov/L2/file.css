@@ -1,0 +1,23 @@
+.students_list{
+    overflow: auto;
+    width:300px;
+    height:200px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.Students{
+    display: inline-block;
+}
+
+.Student_Events{
+    overflow: auto;
+    width:600px;
+    height:200px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.Panel{
+    display: inline;
+}
