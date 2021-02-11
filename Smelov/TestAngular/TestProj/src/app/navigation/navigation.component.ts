@@ -2,6 +2,7 @@ import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef
 import {DelStudentComponent} from '../del-student/del-student.component';
 import {StudentsComponent} from '../students/students.component';
 import {CompaniesComponent} from '../companies/companies.component';
+import {EventsComponent} from '../events/events.component';
 
 @Component({
   selector: 'app-navigation',
@@ -39,5 +40,8 @@ export class NavigationComponent implements OnInit {
 
   clickEvents() {
     this.selectedId = 2;
-  }
+    this.containerRef.clear();
+    const factory = this.resolver.resolveComponentFactory(EventsComponent);
+    const ref = this.containerRef.createComponent(factory);
+    ref.changeDetectorRef.detectChanges();  }
 }

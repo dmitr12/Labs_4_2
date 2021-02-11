@@ -1,5 +1,22 @@
-<ul class="list-group list_students">
-  <li class="list-group-item student-item" [class.selectedItem]="student.id == selectedId" *ngFor="let student of studentService.data" id="{{student.id}}" (click)="clickStudent($event)">
-    {{student.name}}
-  </li>
-</ul>
+<div>
+  <div class="row fltr">
+    <div class="col">
+        <label>Фильтр</label>
+        <mat-select id="filter" (valueChange)="filterSelectChanged($event)" [(value)]="matSelected">
+          <mat-option value="name">Имя</mat-option>
+          <mat-option value="spec">Специальность</mat-option>
+          <mat-option value="syear">Год поступления</mat-option>
+        </mat-select>
+    </div>
+    <div class="col input-field">
+      <input id="filterInput" type="text" [(ngModel)]="inputValue" (input)="changeInputFilter($event)">
+    </div>
+  </div>
+  <div class="line" *ngIf="this.students.length"></div>
+  <ul class="list-group list_students">
+    <li class="list-group-item student-item" [class.selectedItem]="student.id == selectedId" *ngFor="let student of students" id="{{student.id}}" (click)="clickStudent($event)">
+      {{student.name}}
+    </li>
+  </ul>
+</div>
+

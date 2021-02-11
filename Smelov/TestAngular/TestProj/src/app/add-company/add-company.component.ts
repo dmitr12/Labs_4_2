@@ -24,8 +24,8 @@ export class AddCompanyComponent implements OnInit {
   }
 
   addCompany() {
-    this.dataCompaniesService.addCompany(new Company(this.dataCompaniesService.data[this.dataCompaniesService.data.length - 1].id + 1,
-      this.formAdd.value.name));
+    let newId = Date.now() % (10 * 365 * 24 * 60 * 60 * 1000);
+    this.dataCompaniesService.addCompany(new Company(newId, this.formAdd.value.name));
     this.cancel();
   }
 

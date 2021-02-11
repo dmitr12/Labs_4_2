@@ -8,6 +8,8 @@ import {DelStudentComponent} from '../del-student/del-student.component';
 import {AddCompanyComponent} from '../add-company/add-company.component';
 import {UpdCompanyComponent} from '../upd-company/upd-company.component';
 import {DelCompanyComponent} from '../del-company/del-company.component';
+import {StudentseventComponent} from '../studentsevent/studentsevent.component';
+import {CompanieseventComponent} from '../companiesevent/companiesevent.component';
 
 @Component({
   selector: 'app-companies',
@@ -21,6 +23,8 @@ export class CompaniesComponent implements OnInit {
   isHideBtnPanel = false;
 
   @ViewChild('formComponent', {static: true, read: ViewContainerRef}) formRef: any;
+  @ViewChild(CompanieseventComponent, {static: false})
+  private companyEventsComponent: CompanieseventComponent | undefined;
 
   constructor(public dataCompaniesService: DataCompaniesService,
               public eventsService: DataEventsService,
@@ -28,17 +32,35 @@ export class CompaniesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.dataCompaniesService.data.sort((a, b) => {
+      if (a.name > b.name) {
+        return 1;
+      }
+      if (a.name < b.name) {
+        return -1;
+      }
+      return 0;
+    });
+
     this.interactionService.cancel.subscribe(() => {
       this.isHideBtnPanel = false;
       this.formRef.clear();
       this.selectedCompany = null;
+      this.dataCompaniesService.data.sort((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (a.name < b.name) {
+          return -1;
+        }
+        return 0;
+      });
     });
-    // this.interactionService.updStudent.subscribe((student) => {
-    //   this.selectedStudent = student;
-    // });
   }
 
   onCompanyListChanged(idCompany: any) {
+    this.companyEventsComponent?.clearFormContainer();
     this.selectedCompany = this.dataCompaniesService.data.filter(company => company.id == idCompany)[0];
     this.selectedCompanyEvents = this.eventsService.data.filter(e => e.company?.id == idCompany);
   }
@@ -66,4 +88,7 @@ export class CompaniesComponent implements OnInit {
     ref.changeDetectorRef.detectChanges();
   }
 
+  btnPanelPosition() {
+    this.interactionService.sendChangePosition();
+  }
 }

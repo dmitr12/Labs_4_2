@@ -33,8 +33,18 @@ export class AddStudentComponent implements OnInit {
   }
 
   addStudent() {
-    this.dataStudentService.addStudent(new Student(this.students[this.students.length - 1].id + 1, this.formAdd.value.name,
+    let newId = Date.now() % (10 * 365 * 24 * 60 * 60 * 1000);
+    this.dataStudentService.addStudent(new Student(newId, this.formAdd.value.name,
       this.formAdd.value.spec, this.formAdd.value.group, this.formAdd.value.syear));
+    this.dataStudentService.data.sort((a, b) => {
+      if (a.name > b.name) {
+        return 1;
+      }
+      if (a.name < b.name) {
+        return -1;
+      }
+      return 0;
+    });
     this.cancel();
   }
 

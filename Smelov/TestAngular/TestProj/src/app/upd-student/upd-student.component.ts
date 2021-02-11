@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DataStudentService} from '../data-student.service';
 import {InteractionServiceService} from '../interaction-service.service';
 import {Message} from '../models/Message';
+import {DataEventsService} from '../data-events.service';
 
 @Component({
   selector: 'app-upd-student',
@@ -19,7 +20,8 @@ export class UpdStudentComponent implements OnInit {
 
   formUpd: any;
 
-  constructor(public dataStudentService: DataStudentService, public interactionService: InteractionServiceService) {
+  constructor(public dataStudentService: DataStudentService, public interactionService: InteractionServiceService,
+              public dataEventsService: DataEventsService) {
   }
 
   ngOnInit(): void {
@@ -35,9 +37,22 @@ export class UpdStudentComponent implements OnInit {
   }
 
   updStudent() {
-    this.dataStudentService.updStudent(new Student(this.selectedStudent?.id, this.formUpd.value.name,
-      this.formUpd.value.spec, this.formUpd.value.group, this.formUpd.value.syear));
+    let student = new Student(this.selectedStudent?.id, this.formUpd.value.name,
+      this.formUpd.value.spec, this.formUpd.value.group, this.formUpd.value.syear);
+    this.dataStudentService.updStudent(student);
+    this.dataEventsService.data.filter(e => e.student.id == this.selectedStudent.id).forEach((item) => {
+      item.student = student;
+    });
     this.interactionService.sendUpd(this.dataStudentService.data.filter(s => s.id == this.selectedStudent.id)[0]);
+    this.dataStudentService.data.sort((a, b) => {
+      if (a.name > b.name) {
+        return 1;
+      }
+      if (a.name < b.name) {
+        return -1;
+      }
+      return 0;
+    });
     this.cancel();
   }
 

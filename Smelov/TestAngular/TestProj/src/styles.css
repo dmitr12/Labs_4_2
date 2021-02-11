@@ -26,13 +26,26 @@
 }
 
 .btn-panel{
-  margin-top: 20px
+  margin: 20px 0px;
+  padding: 0px 10px;
+}
+
+.btn-panel-item{
+  font-size: 38px;
+  margin-right: 10px;
+  transition: all .3s;
+  cursor: default;
+}
+
+.btn-panel-item:hover{
+  color: #980af7;
 }
 
 .list_students{
-  max-height: 400px;
+  max-height: 490px;
+  min-height: 490px;
   overflow:auto;
-  margin: 20px 0;
+  margin: 20px 0px;
 }
 
 .list_students::-webkit-scrollbar{
@@ -50,6 +63,39 @@
   cursor: default;
 }
 
+.btnPanel{
+  color: #980af7;
+  cursor: default;
+}
+
+.fltr{
+  padding: 0px 18px;
+}
+
+.hide-scroll {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.hide-scroll::-webkit-scrollbar {width:0px;}
+
+.line{
+  border: none;
+  background-color: #980af7;
+  height: 1px;
+  margin: 0px 18px;
+}
+
+.list_evnts{
+  max-height: 600px;
+  min-height: 600px;
+  overflow:auto;
+  margin: 20px 0px;
+}
+
+.list_evnts::-webkit-scrollbar{
+  width: 0;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

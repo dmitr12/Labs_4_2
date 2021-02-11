@@ -27,10 +27,11 @@ export class UpdCompanyComponent implements OnInit {
   }
 
   updCompany() {
-    this.dataCompaniesService.updCompany(new Company(this.selectedCompany?.id, this.formUpd.value.name));
+    let company = new Company(this.selectedCompany?.id, this.formUpd.value.name);
+    this.dataCompaniesService.updCompany(company);
     this.dataEventsService.data.filter(e => e.company?.id == this.selectedCompany.id).forEach((item) => {
       if (item.company) {
-        item.company.name = this.formUpd.value.name;
+        item.company = company;
       }
     });
     this.interactionService.sendUpd(this.dataCompaniesService.data.filter(c => c.id == this.selectedCompany.id)[0]);

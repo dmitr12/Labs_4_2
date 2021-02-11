@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div id="btn-panel" [hidden]="isHideBtnPanel" class="row btn-panel justify-content-center">
-        <button style="background-color: #980af7" class="btn btn-small btnpanel waves-effect waves-light" (click)="btnPanelAdd()">Добавить</button>
-        <button style="background-color: #980af7" *ngIf="selectedCompany" class="btn btn-small btnpanel waves-effect waves-light" (click)="btnPanelEdit()">Изменить</button>
-        <button style="background-color: #980af7" *ngIf="selectedCompany" class="btn btn-small btnpanel waves-effect waves-light" (click)="btnPanelDelete()">Удалить</button>
-        <button style="background-color: #980af7" class="btn btn-small btnpanel waves-effect waves-light" >Позиционировать</button>
+      <div id="btn-panel" [hidden]="isHideBtnPanel" class="row btn-panel justify-content-start">
+        <span class="material-icons btn-panel-item" (click)="btnPanelAdd()">add_circle_outline</span>
+        <span class="material-icons btn-panel-item" (click)="btnPanelPosition()">east</span>
+        <span *ngIf="selectedCompany" class="material-icons btn-panel-item" (click)="btnPanelEdit()">create</span>
+        <span *ngIf="selectedCompany" class="material-icons btn-panel-item" (click)="btnPanelDelete()">remove_circle_outline</span>
       </div>
       <ng-template #formComponent></ng-template>
-      <div class="list">
+      <div class="list" [hidden]="isHideBtnPanel">
         <app-companieslist (onState)="onCompanyListChanged($event)"></app-companieslist>
       </div>
     </div>

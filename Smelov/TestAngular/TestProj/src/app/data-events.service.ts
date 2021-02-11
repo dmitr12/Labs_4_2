@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {EventModel} from './models/event';
+import {Student} from './models/student';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class DataEventsService {
     },
     {
       id: 3, date: '2018-02-07', text: 'Принят на работу',
-      company: {id: 2, name: 'LeverX'}, student: {id: 2, name: 'Иванов И.И.'}
+      company: {id: 2, name: 'LeverX'}, student: {id: 2, name: 'Иванов И.И.', spec: 'ИСиТ', group: 1, syear: 2016}
     },
     {
       id: 4, date: '2018-04-22', text: 'Собеседование не прошел, плохой англ',
@@ -50,4 +52,18 @@ export class DataEventsService {
       company: {id: 2, name: 'LeverX'}, student: {id: 8, name: 'Александров А.А.', spec: 'ПОИБМС', group: 7, syear: 2017}
     }
   ];
+
+  addEvent(event: EventModel){
+    this.data.push(event);
+  }
+
+  updEvent(event: EventModel) {
+    let itemIndex = this.data.findIndex(item => item.id == event.id);
+    this.data[itemIndex] = event;
+  }
+
+  delEvent(idEvent: number) {
+    let itemIndex = this.data.findIndex(item => item.id == idEvent);
+    this.data.splice(itemIndex, 1);
+  }
 }

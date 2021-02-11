@@ -24,6 +24,16 @@ import { CompanieseventComponent } from './companiesevent/companiesevent.compone
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { UpdCompanyComponent } from './upd-company/upd-company.component';
 import { DelCompanyComponent } from './del-company/del-company.component';
+import { AddSdtudentEventComponent } from './add-sdtudent-event/add-sdtudent-event.component';
+import { UpdStudentEventComponent } from './upd-student-event/upd-student-event.component';
+import {DatePipe} from '@angular/common';
+import { DelStudentEventComponent } from './del-student-event/del-student-event.component';
+import { AddCompanyEventComponent } from './add-company-event/add-company-event.component';
+import { UpdCompanyEventComponent } from './upd-company-event/upd-company-event.component';
+import { DelCompanyEventComponent } from './del-company-event/del-company-event.component';
+import { AddEventComponent } from './add-event/add-event.component';
+import { UpdEventComponent } from './upd-event/upd-event.component';
+import { DelEventComponent } from './del-event/del-event.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +54,16 @@ import { DelCompanyComponent } from './del-company/del-company.component';
     CompanieseventComponent,
     AddCompanyComponent,
     UpdCompanyComponent,
-    DelCompanyComponent
+    DelCompanyComponent,
+    AddSdtudentEventComponent,
+    UpdStudentEventComponent,
+    DelStudentEventComponent,
+    AddCompanyEventComponent,
+    UpdCompanyEventComponent,
+    DelCompanyEventComponent,
+    AddEventComponent,
+    UpdEventComponent,
+    DelEventComponent
   ],
     imports: [
         BrowserModule,
@@ -55,7 +74,7 @@ import { DelCompanyComponent } from './del-company/del-company.component';
         NoopAnimationsModule,
         MatSelectModule
     ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

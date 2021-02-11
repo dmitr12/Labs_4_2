@@ -12,6 +12,8 @@ import {AddStudentComponent} from '../add-student/add-student.component';
 import {UpdStudentComponent} from '../upd-student/upd-student.component';
 import {Message} from '../models/Message';
 import {DelStudentComponent} from '../del-student/del-student.component';
+import {AddSdtudentEventComponent} from '../add-sdtudent-event/add-sdtudent-event.component';
+import {StudentseventComponent} from '../studentsevent/studentsevent.component';
 
 @Component({
   selector: 'app-students',
@@ -30,11 +32,13 @@ export class StudentsComponent implements OnInit {
   isHideBtnPanel = false;
 
   @ViewChild('formComponent', {static: true, read: ViewContainerRef}) formRef: any;
+  @ViewChild(StudentseventComponent, {static: false})
+  private studentEventsComponent: StudentseventComponent | undefined;
 
   ngOnInit(): void {
     this.interactionService.cancel.subscribe(() => {
       this.isHideBtnPanel = false;
-      this.formRef.clear();
+      this.formRef?.clear();
       this.selectedStudent = null;
     });
     this.interactionService.upd.subscribe((student) => {
@@ -47,10 +51,10 @@ export class StudentsComponent implements OnInit {
     const factory = this.resolver.resolveComponentFactory(AddStudentComponent);
     const ref = this.formRef.createComponent(factory);
     ref.changeDetectorRef.detectChanges();
-    // this.interactionService.sendTypeBtn('add');
   }
 
   onStudentListChanged(idStudent: any) {
+    this.studentEventsComponent?.clearFormContainer();
     this.selectedStudent = this.studentService.data.filter(student => student.id == idStudent)[0];
     this.selectedStudentEvents = this.eventsService.data.filter(e => e.student.id == idStudent);
   }
@@ -69,5 +73,9 @@ export class StudentsComponent implements OnInit {
     const ref = this.formRef.createComponent(factory);
     ref.instance.selectedStudent = this.selectedStudent;
     ref.changeDetectorRef.detectChanges();
+  }
+
+  btnPanelPosition() {
+    this.interactionService.sendChangePosition();
   }
 }

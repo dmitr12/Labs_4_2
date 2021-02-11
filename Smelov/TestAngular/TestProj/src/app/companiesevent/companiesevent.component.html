@@ -1,8 +1,26 @@
-<div *ngIf="selectedCompany!=null">
+<div class="list_students" *ngIf="selectedCompany!=null">
   <p>{{selectedCompany.name}}</p>
-  <ul>
+  <span class="material-icons btnPanel" [hidden]="isHide" (click)="btnPanelAdd()">
+    add_circle_outline
+  </span>
+  <ng-template #frm></ng-template>
+  <ul [hidden]="isHide">
     <li *ngFor="let e of selectedCompanyEvents">
-      {{e.id}}) {{e.date}},{{e.student?.name}}-{{e.student?.spec}}-{{e.student?.group}}-{{e.student?.syear}},{{e.text}}
+      <div class="row">
+        <div class="col-1" [hidden]="isHide">
+          <span class="material-icons btnPanel" (click)="btnPanelUpd(e.id)">
+            create
+          </span>
+        </div>
+        <div class="col-1" [hidden]="isHide" (click)="btnPanelDel(e.id)">
+          <span class="material-icons btnPanel">
+            delete
+          </span>
+        </div>
+        <div class="col-10">
+          {{e.date}},{{e.student?.name}}-{{e.student?.spec}}-{{e.student?.group}}-{{e.student?.syear}},{{e.text}}
+        </div>
+      </div>
     </li>
   </ul>
 </div>

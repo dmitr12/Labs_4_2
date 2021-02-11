@@ -1,0 +1,30 @@
+<form id="form-add" class="card frm" style="margin-top: 20px;" [formGroup]="formAdd" (ngSubmit)="addCompanyEvent()">
+  <div class="card-content">
+    <span class="card-title center-align">Добавить событие</span>
+    <div class="input-field">
+      <input type="date" required id="date" formControlName="date" max="{{datepipe.transform(date, 'yyyy-MM-dd')}}">
+      <span class="helper-text red-text" *ngIf="formAdd.get('date')?.invalid && formAdd.get('date')?.dirty">
+        <span *ngIf="formAdd.get('date')?.errors?.required">Поле необходимо заполнить</span>
+      </span>
+    </div>
+    <mat-form-field appearance="fill" style="width: 100%">
+      <label>Студент</label>
+      <mat-select id="student" formControlName="student">
+        <mat-option *ngFor="let student of dataStudentService.data" [value]="student.id">
+          {{student.name}}-{{student.spec}}-{{student.group}}гр.-{{student.syear}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="input-field">
+      <label class="active" for="text">Описание</label>
+      <input type="text" required id="text" formControlName="text">
+      <span class="helper-text red-text" *ngIf="formAdd.get('text')?.invalid && formAdd.get('text')?.dirty">
+        <span *ngIf="formAdd.get('text')?.errors?.required">Поле необходимо заполнить</span>
+      </span>
+    </div>
+  </div>
+  <div class="card-action center-align">
+    <button type="submit" class="btn waves-effect waves-light" style="background-color: #980af7" [disabled]="formAdd.invalid">Добавить</button>
+    <button id="btnCancel" class="btn waves-effect waves-light" style="background-color: #980af7; margin-left: 20px" (click)="cancel()">Отмена</button>
+  </div>
+</form>
